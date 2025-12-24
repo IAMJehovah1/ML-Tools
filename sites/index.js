@@ -38,7 +38,14 @@ export default async function (site) {
       '@apostrophecms/favicon': {},
       '@apostrophecms/vite': {},
 
-      websocket: {}
+      websocket: {},
+
+      // ML Tools modules
+      'ml-tools/ml-model': {},
+      'ml-tools/ml-dataset': {},
+      'ml-tools/ml-training-job': {},
+      'ml-tools/ml-experiment': {},
+      'ml-tools/ml-inference-api': {}
     }
   };
 
