@@ -1,4 +1,24 @@
-# Apostrophe Starter Kit Assembly Essentials
+# ML Tools - Apostrophe Starter Kit for AI Advancement
+
+This repository extends the Apostrophe CMS multisite starter kit with comprehensive **Machine Learning Tools** for advancing AI development.
+
+## 🚀 ML Tools Features
+
+This platform now includes a complete suite of ML tools:
+
+- **ML Model Management** - Upload, version, and manage trained models
+- **Dataset Management** - Organize and track training datasets  
+- **Training Job Tracking** - Configure and monitor model training
+- **Experiment Management** - Track experiments and compare results
+- **Inference API** - REST API for running predictions
+- **Python & JavaScript Clients** - Easy-to-use API clients
+
+**[📖 Read the ML Tools Guide](ML-TOOLS-GUIDE.md)** | **[🎯 Quick Start Guide](QUICKSTART.md)**
+
+---
+
+## About the Base Platform
+
 >**Important Notice:**
 >
 >This starter kit requires the`@apostrophecms-pro/multisite` module, which requires an Apostrophe Assembly license. To obtain a license, please visit our [website](https://apostrophecms.com/assembly) to learn more. You can contact our support team for assistance or purchase a subscription directly through [your Apostrophe Workspace](https://app.apostrophecms.com/login).
@@ -7,7 +27,9 @@
 
 <!-- TOC is auto generated via VSCode extensions https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one.
 Having it installed in your VSCode will ensure that adding/changing heading will be auto-populated here. -->
-- [Apostrophe Starter Kit Assembly Essentials](#apostrophe-starter-kit-assembly-essentials)
+- [ML Tools - Apostrophe Starter Kit for AI Advancement](#ml-tools---apostrophe-starter-kit-for-ai-advancement)
+  - [🚀 ML Tools Features](#-ml-tools-features)
+  - [About the Base Platform](#about-the-base-platform)
   - [Purpose](#purpose)
     - [**We recommend installing this project by forking it to your own GitHub account and then cloning it locally. The Apostrophe CLI is not currently intended for multisite projects**](#we-recommend-installing-this-project-by-forking-it-to-your-own-github-account-and-then-cloning-it-locally-the-apostrophe-cli-is-not-currently-intended-for-multisite-projects)
   - [First Steps: required before startup](#first-steps-required-before-startup)

@@ -1,0 +1,60 @@
+{
+  "model_type": "tensorflow",
+  "task_type": "classification",
+  "architecture": {
+    "type": "sequential",
+    "layers": [
+      {
+        "type": "dense",
+        "units": 64,
+        "activation": "relu",
+        "input_shape": [4]
+      },
+      {
+        "type": "dropout",
+        "rate": 0.3
+      },
+      {
+        "type": "dense",
+        "units": 32,
+        "activation": "relu"
+      },
+      {
+        "type": "dense",
+        "units": 3,
+        "activation": "softmax"
+      }
+    ]
+  },
+  "training": {
+    "epochs": 50,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy",
+    "metrics": ["accuracy"],
+    "validation_split": 0.2,
+    "early_stopping": {
+      "monitor": "val_loss",
+      "patience": 10,
+      "restore_best_weights": true
+    }
+  },
+  "data": {
+    "input_shape": [4],
+    "output_shape": [3],
+    "normalization": "standard_scaler",
+    "augmentation": false
+  },
+  "callbacks": [
+    {
+      "type": "model_checkpoint",
+      "filepath": "checkpoints/model-{epoch:02d}-{val_accuracy:.2f}.h5",
+      "save_best_only": true
+    },
+    {
+      "type": "tensorboard",
+      "log_dir": "logs"
+    }
+  ]
+}
