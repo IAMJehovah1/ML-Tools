@@ -8,6 +8,17 @@ export default {
     searchable: true,
     autopublish: true
   },
+  // Add indexes for performance
+  indexes: [
+    {
+      // Index for active models query
+      key: { active: 1 }
+    },
+    {
+      // Compound index for model type and active status
+      key: { modelType: 1, active: 1 }
+    }
+  ],
   fields: {
     add: {
       modelName: {
