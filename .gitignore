@@ -39,3 +39,8 @@ sites/modules/theme-*/public/css/site.css
 /cypress/videos
 /cypress/screenshots
 /cypress/downloads
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
