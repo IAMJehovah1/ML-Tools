@@ -209,6 +209,8 @@ export default {
           const age = Date.now() - timestamp;
           
           if (age < self.options.cache.ttl) {
+            // Update timestamp for LRU on cache hit
+            self.cacheTimestamps.set(modelId, Date.now());
             return self.modelCache.get(modelId);
           } else {
             // Cache expired, remove it
@@ -219,10 +221,21 @@ export default {
 
         // Check cache size limit before adding new model
         if (self.modelCache.size >= self.options.cache.maxSize) {
-          // Implement LRU eviction: remove oldest entry
-          const oldestKey = self.cacheTimestamps.entries().next().value[0];
-          self.modelCache.delete(oldestKey);
-          self.cacheTimestamps.delete(oldestKey);
+          // Implement true LRU eviction: find and remove least recently used entry
+          let oldestKey = null;
+          let oldestTime = Date.now();
+          
+          for (const [key, timestamp] of self.cacheTimestamps.entries()) {
+            if (timestamp < oldestTime) {
+              oldestTime = timestamp;
+              oldestKey = key;
+            }
+          }
+          
+          if (oldestKey) {
+            self.modelCache.delete(oldestKey);
+            self.cacheTimestamps.delete(oldestKey);
+          }
         }
 
         // In production, load the actual model file here
