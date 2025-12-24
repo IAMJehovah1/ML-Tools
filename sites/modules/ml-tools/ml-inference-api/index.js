@@ -21,7 +21,7 @@ export default {
             }
 
             // Get the model
-            const model = await self.apos.mlModel.find(req, { _id: modelId }).toObject();
+            const model = await self.apos.mlModel.find(req, { _id: modelId }).toOne();
             
             if (!model) {
               throw self.apos.error('notfound', 'Model not found');
@@ -66,7 +66,7 @@ export default {
             }
 
             // Get the model
-            const model = await self.apos.mlModel.find(req, { _id: modelId }).toObject();
+            const model = await self.apos.mlModel.find(req, { _id: modelId }).toOne();
             
             if (!model) {
               throw self.apos.error('notfound', 'Model not found');
@@ -108,7 +108,7 @@ export default {
         // Get active models
         async '/api/v1/ml/models/active'(req) {
           try {
-            const models = await self.apos.mlModel.find(req, { active: true }).toArray();
+            const models = await self.apos.mlModel.find(req, { active: true }).for('public').toArray();
             
             return {
               models: models.map(model => ({
@@ -131,7 +131,7 @@ export default {
           try {
             const { modelId } = req.params;
             
-            const model = await self.apos.mlModel.find(req, { _id: modelId }).toObject();
+            const model = await self.apos.mlModel.find(req, { _id: modelId }).toOne();
             
             if (!model) {
               throw self.apos.error('notfound', 'Model not found');
