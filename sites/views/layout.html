@@ -1,0 +1,71 @@
+{% extends data.outerLayout %}
+
+{% import 'fragments/link.html' as link %}
+
+{% block title %}
+  {% set title = data.piece.title or data.page.title %}
+
+  {{ title }}
+
+  {% if not title %}
+    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
+  {% endif %}
+{% endblock %}
+
+{% block beforeMain %}
+<div class="wrapper">
+
+  <header class="header">
+    {% set logo = apos.image.first(data.global.logo) %}
+  
+    {% if logo %}
+      <a href="/"><img class="header__logo" src="{{ apos.attachment.url(logo, { size: 'one-third' }) }}" /></a>
+    {% else %}
+      <img class="header__logo" src="/images/logo.png" alt="ApostropheCMS logo">
+    {% endif %}
+  
+    <nav class="navigation">
+      {% for item in data.global.headerLinks %}
+        {% set path = apos.template.linkPath(item) %}
+  
+        {% rendercall link.template({
+          path: path,
+          class: 'navigation__link',
+          attributes: {
+            target: item.linkTarget
+          }
+        }) %}
+          {{ item.linkText }}
+        {% endrendercall %}
+      {% endfor %}
+  
+      {% if not data.user %}
+        <a class="button" href="/login">Login</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="main">
+{% endblock %}
+
+{% block main %}
+  {#
+    Usually, your page templates in the @apostrophecms/pages module will override
+    this block. It is safe to assume this is where your page-specific content
+    should go.
+  #}
+{% endblock %}
+
+{% block afterMain %}
+  </main>
+  <footer class="footer">
+    <h2 class="footer__header">Essential Links</h2>
+    <ul class="footer__links">
+      <li><a class="link" href="https://apostrophecms.com/" target="_blank">About ApostropheCMS</a></li>
+      <li><a class="link" href="https://chat.apostrophecms.com/" target="_blank">Discord</a></li>
+      <li><a class="link" href="https://twitter.com/apostrophecms" target="_blank">Twitter</a></li>
+      <li><a class="link" href="https://github.com/apostrophecms/apostrophe/discussions" target="_blank">GitHub Discussions</a></li>
+    </ul>
+  </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends data.outerLayout %}
+
+{% block startHead %}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+{% endblock %}
+
+{% block title %}
+  {% if data.piece %}
+    {{ data.piece.title }}
+  {% elseif data.page %}
+    {{ data.page.title }}
+  {% else %}
+    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
+  {% endif %}
+{% endblock %}

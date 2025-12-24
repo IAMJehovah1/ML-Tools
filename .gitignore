@@ -1,0 +1,41 @@
+# vim swapfiles
+*.swp
+.DS_Store
+/dashboard/locales
+/locales
+npm-debug.log
+package-lock.json
+/data
+/dashboard/data
+/sites/data
+*/apos-build
+*/public/apos-frontend
+/dashboard/modules/asset/ui/public
+/sites/modules/theme-*/ui/public
+*/public/modules
+*/public/uploads
+*/public/svgs/*.svg
+*/public/apos-minified
+node_modules
+# This folder is created on the fly and contains symlinks updated at startup (we'll come up with a Windows solution that actually copies things)
+/public/modules
+# We don't commit CSS, only LESS
+*/public/css/*.css
+*/public/css/*.less
+# Don't commit CSS sourcemap files
+*/public/css/*.map
+# Don't commit masters generated on the fly at startup, these import all the rest
+/public/css/master-*.less
+.jshintrc
+/public/js/_site-compiled.js
+/public/sitemap.xml
+dashboard/modules/assets/public/css/site.css
+dashboard/modules/assets/public/js/site.js
+sites/modules/theme-*/public/js/site.js
+sites/modules/theme-*/public/css/site.css
+# Deployed, but not committed
+/release-id
+# Cypress
+/cypress/videos
+/cypress/screenshots
+/cypress/downloads

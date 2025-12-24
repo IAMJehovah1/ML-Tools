@@ -1,0 +1,13 @@
+{% extends "outerLayoutBase.html" %}
+
+{% block standardHead %}
+  {# Use standardHead and super() rather than extraHead to ensure palette injects after it #}
+  {{ super() }}
+  {% if data.global.googleFontScript and data.global.fontFamilies.length %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?{{ data.global.fontFamilyParameters | safe }}&display=swap" rel="stylesheet">
+  {% endif %}
+  {# Add a favicon to the page from the /public/images folder #}
+  {# <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> #}
+{% endblock %}
