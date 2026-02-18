@@ -25,8 +25,9 @@ Our main catalog contains detailed information about tools in the following cate
 
 ## 🚀 Quick Start
 
-1. Browse the [AI-TOOLS.md](AI-TOOLS.md) catalog to discover tools
-2. Each tool includes:
+1. **New to AI tools?** Start with the [Quick Reference Guide](QUICK-REFERENCE.md) to find tools by use case
+2. **Looking for specific tools?** Browse the complete [AI-TOOLS.md](AI-TOOLS.md) catalog
+3. Each tool includes:
    - Description and key features
    - Official links
    - Common use cases
@@ -59,7 +60,8 @@ Tools included in this collection meet the following criteria:
 
 ## 🔗 Quick Links
 
-- [Full AI Tools Catalog](AI-TOOLS.md)
+- [Quick Reference by Use Case](QUICK-REFERENCE.md) - Find the right tool for your needs
+- [Full AI Tools Catalog](AI-TOOLS.md) - Complete directory of all tools
 - [Contributing Guidelines](#contributing)
 - [License](LICENSE.md)
 
