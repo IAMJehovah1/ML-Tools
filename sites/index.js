@@ -38,7 +38,11 @@ export default async function (site) {
       '@apostrophecms/favicon': {},
       '@apostrophecms/vite': {},
 
-      websocket: {}
+      websocket: {},
+
+      'agent-orchestrator': {},
+
+      'artwork-workflow-page': {}
     }
   };
 
