@@ -1,0 +1,152 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="artwork-workflow">
+  <header class="artwork-workflow__header">
+    <h1 class="artwork-workflow__title">{{ data.page.title }}</h1>
+    {% if data.page.workflowStatus %}
+      <span class="artwork-workflow__status artwork-workflow__status--{{ data.page.workflowStatus }}">
+        {{ data.page.workflowStatus | replace('-', ' ') | title }}
+      </span>
+    {% endif %}
+  </header>
+
+  {# Concept Development #}
+  {% if data.page.artworkTheme or data.page.artworkStyle %}
+    <section class="artwork-workflow__section" aria-labelledby="concept-heading">
+      <h2 id="concept-heading" class="artwork-workflow__section-title">Concept Development</h2>
+      {% if data.page.artworkTheme %}
+        <div class="artwork-workflow__field">
+          <dt class="artwork-workflow__field-label">Theme</dt>
+          <dd class="artwork-workflow__field-value">{{ data.page.artworkTheme }}</dd>
+        </div>
+      {% endif %}
+      {% if data.page.artworkStyle %}
+        <div class="artwork-workflow__field">
+          <dt class="artwork-workflow__field-label">Style</dt>
+          <dd class="artwork-workflow__field-value">{{ data.page.artworkStyle }}</dd>
+        </div>
+      {% endif %}
+      {% if data.page.references and data.page.references.length %}
+        <div class="artwork-workflow__field">
+          <dt class="artwork-workflow__field-label">Reference Materials</dt>
+          <dd class="artwork-workflow__field-value">
+            <ul class="artwork-workflow__references">
+              {% for ref in data.page.references %}
+                <li class="artwork-workflow__reference">
+                  {% if ref.url %}
+                    <a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.description }}</a>
+                  {% else %}
+                    {{ ref.description }}
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {# Workflow Map #}
+  <section class="artwork-workflow__section" aria-labelledby="workflow-map-heading">
+    <h2 id="workflow-map-heading" class="artwork-workflow__section-title">Workflow Map</h2>
+    <ol class="artwork-workflow__stages">
+      <li class="artwork-workflow__stage">
+        <span class="artwork-workflow__stage-name">Concept Development</span>
+        <span class="artwork-workflow__stage-desc">Define theme, style, and collect reference materials</span>
+      </li>
+      <li class="artwork-workflow__stage">
+        <span class="artwork-workflow__stage-name">Agent Assignment</span>
+        <span class="artwork-workflow__stage-desc">Designate agents and establish responsibilities</span>
+      </li>
+      <li class="artwork-workflow__stage artwork-workflow__stage--checkpoint">
+        <span class="artwork-workflow__stage-name">Workflow Mapping</span>
+        <span class="artwork-workflow__stage-desc">Map action sequence and define evaluation checkpoints</span>
+        <span class="artwork-workflow__checkpoint-badge">Checkpoint</span>
+      </li>
+      <li class="artwork-workflow__stage">
+        <span class="artwork-workflow__stage-name">Image Generation</span>
+        <span class="artwork-workflow__stage-desc">Generate initial artwork from prompts</span>
+      </li>
+      <li class="artwork-workflow__stage">
+        <span class="artwork-workflow__stage-name">Refinement</span>
+        <span class="artwork-workflow__stage-desc">Enhance and improve the generated images</span>
+      </li>
+      <li class="artwork-workflow__stage artwork-workflow__stage--checkpoint">
+        <span class="artwork-workflow__stage-name">Style Transfer</span>
+        <span class="artwork-workflow__stage-desc">Apply style transfer to align with target aesthetic</span>
+        <span class="artwork-workflow__checkpoint-badge">Checkpoint</span>
+      </li>
+      <li class="artwork-workflow__stage artwork-workflow__stage--checkpoint">
+        <span class="artwork-workflow__stage-name">Quality Control</span>
+        <span class="artwork-workflow__stage-desc">Assess quality and prepare for review</span>
+        <span class="artwork-workflow__checkpoint-badge">Checkpoint</span>
+      </li>
+      <li class="artwork-workflow__stage artwork-workflow__stage--checkpoint">
+        <span class="artwork-workflow__stage-name">Review &amp; Iteration</span>
+        <span class="artwork-workflow__stage-desc">Evaluate outputs and adjust agent instructions</span>
+        <span class="artwork-workflow__checkpoint-badge">Checkpoint</span>
+      </li>
+      <li class="artwork-workflow__stage">
+        <span class="artwork-workflow__stage-name">Finalization</span>
+        <span class="artwork-workflow__stage-desc">Select final artwork and archive all traces</span>
+      </li>
+    </ol>
+  </section>
+
+  {# Agent Definitions #}
+  <section class="artwork-workflow__section" aria-labelledby="agents-heading">
+    <h2 id="agents-heading" class="artwork-workflow__section-title">Agent Assignment</h2>
+    <ul class="artwork-workflow__agents">
+      <li class="artwork-workflow__agent">
+        <h3 class="artwork-workflow__agent-name">Image Generation Agent</h3>
+        <p class="artwork-workflow__agent-role">Generate initial artwork from concept prompts and style parameters</p>
+        <span class="artwork-workflow__agent-trigger">Trigger: <code>concept-ready</code></span>
+      </li>
+      <li class="artwork-workflow__agent">
+        <h3 class="artwork-workflow__agent-name">Refinement Agent</h3>
+        <p class="artwork-workflow__agent-role">Enhance and refine the generated images based on quality criteria</p>
+        <span class="artwork-workflow__agent-trigger">Trigger: <code>image-generated</code></span>
+      </li>
+      <li class="artwork-workflow__agent">
+        <h3 class="artwork-workflow__agent-name">Style Transfer Agent</h3>
+        <p class="artwork-workflow__agent-role">Apply style transfer techniques to align with the target aesthetic</p>
+        <span class="artwork-workflow__agent-trigger">Trigger: <code>refinement-complete</code></span>
+      </li>
+      <li class="artwork-workflow__agent">
+        <h3 class="artwork-workflow__agent-name">Quality Control Agent</h3>
+        <p class="artwork-workflow__agent-role">Assess output quality and flag items requiring human review</p>
+        <span class="artwork-workflow__agent-trigger">Trigger: <code>style-applied</code></span>
+      </li>
+    </ul>
+  </section>
+
+  {# Finalization details #}
+  {% if data.page.workflowStatus == 'finalized' and data.page.selectedVersion %}
+    <section class="artwork-workflow__section" aria-labelledby="finalization-heading">
+      <h2 id="finalization-heading" class="artwork-workflow__section-title">Finalization</h2>
+      <div class="artwork-workflow__field">
+        <dt class="artwork-workflow__field-label">Selected Version</dt>
+        <dd class="artwork-workflow__field-value">{{ data.page.selectedVersion }}</dd>
+      </div>
+      {% if data.page.activeWorkflowId %}
+        <div class="artwork-workflow__field">
+          <dt class="artwork-workflow__field-label">Workflow ID</dt>
+          <dd class="artwork-workflow__field-value"><code>{{ data.page.activeWorkflowId }}</code></dd>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {# Review Notes #}
+  {% if not apos.area.isEmpty(data.page, 'reviewNotes') %}
+    <section class="artwork-workflow__section" aria-labelledby="review-heading">
+      <h2 id="review-heading" class="artwork-workflow__section-title">Review &amp; Notes</h2>
+      <div class="artwork-workflow__review-notes">
+        {% area data.page, 'reviewNotes' %}
+      </div>
+    </section>
+  {% endif %}
+</div>
+{% endblock %}
