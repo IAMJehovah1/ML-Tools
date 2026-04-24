@@ -147,7 +147,7 @@ export default {
         }));
 
         // Stage: Agent Assignment
-        for (const [ , agent ] of Object.entries(self.agents)) {
+        for (const agent of Object.values(self.agents)) {
           traces.push(self.trace(workflowId, agent.name, 'agent-assigned', {
             role: agent.role,
             trigger: agent.trigger

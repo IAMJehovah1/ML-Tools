@@ -123,7 +123,7 @@
   </section>
 
   {# Finalization details #}
-  {% if data.page.workflowStatus === 'finalized' and data.page.selectedVersion %}
+  {% if data.page.workflowStatus == 'finalized' and data.page.selectedVersion %}
     <section class="artwork-workflow__section" aria-labelledby="finalization-heading">
       <h2 id="finalization-heading" class="artwork-workflow__section-title">Finalization</h2>
       <div class="artwork-workflow__field">
